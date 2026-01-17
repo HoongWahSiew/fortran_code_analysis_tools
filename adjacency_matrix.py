@@ -18,6 +18,9 @@ def generate_fortran_matrix(directory):
         if filename.endswith(".f90"):
             with open(os.path.join(directory, filename), 'r') as f:
                 content = f.read()
+                delete_comments = re.sub(r'!.*', '', content)  # Remove comments
+                content = delete_comments
+                
                 # Join line continuations (&)
                 content = re.sub(r'&\s*\n\s*', '', content)
                 
